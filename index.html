@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پوهنځی کمپیوتر ساینس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #222;
+            line-height: 1.8;
+        }
+
+        /* ===== نوار ناوبری ===== */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: #fff;
+            color: #1e3c72;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ===== هیرو ===== */
+        .hero {
+            background: linear-gradient(rgba(30,60,114,0.85), rgba(42,82,152,0.85)),
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* ===== بخش‌ها ===== */
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #2a5298;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* ===== معرفی ===== */
+        .intro-box {
+            background: #fff;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            font-size: 1.05rem;
+        }
+
+        .intro-box p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* ===== کارت‌های معلومات ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            transition: 0.3s;
+            border-top: 5px solid #2a5298;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(42,82,152,0.2);
+        }
+
+        .card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* ===== گالری تصاویر ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            height: 220px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(transparent, rgba(30,60,114,0.9));
+            color: #fff;
+            padding: 30px 15px 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ===== بخش دیپارتمنت‌ها ===== */
+        .dept-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .dept {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            border-right: 6px solid #2a5298;
+            transition: 0.3s;
+        }
+
+        .dept:hover {
+            transform: translateX(-5px);
+        }
+
+        .dept h3 {
+            color: #1e3c72;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dept p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* ===== فوتر ===== */
+        footer {
+            background: #1e3c72;
+            color: #fff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        /* ===== دکمه بالا ===== */
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #2a5298;
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        #scrollTop:hover {
+            background: #1e3c72;
+        }
+
+        /* ===== موبایل ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.9rem; }
+            .hero p { font-size: 1rem; }
+            nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+            .nav-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نوار ناوبری -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>💻</span> پوهنځی کمپیوتر ساینس
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#intro">معرفی</a></li>
+                    <li><a href="#info">معلومات</a></li>
+                    <li><a href="#gallery">تصاویر</a></li>
+                    <li><a href="#departments">دیپارتمنت‌ها</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- هیرو -->
+    <div class="hero">
+        <h1>پوهنځی کمپیوتر ساینس</h1>
+        <p>آموزش نسل آینده متخصصان تکنالوژی معلوماتی، با کیفیت عالی و مطابق با استانداردهای جهانی</p>
+    </div>
+
+    <!-- بخش معرفی -->
+    <section id="intro">
+        <h2 class="section-title">معرفی پوهنځی</h2>
+        <p class="section-subtitle">آشنایی با پوهنځی کمپیوتر ساینس</p>
+        <div class="intro-box">
+            <p>
+                پوهنځی کمپیوتر ساینس یکی از پوهنځی‌های کلیدی پوهنتون ما است که با هدف تربیت متخصصان ماهر در
+                عرصه‌های مختلف تکنالوژی معلوماتی تأسیس گردیده است. این پوهنځی با استفاده از کادر علمی مجرب،
+                لابراتوارهای مجهز و برنامه‌های درسی به‌روز، محیطی مناسب برای یادگیری و تحقیق فراهم می‌کند.
+            </p>
+            <p>
+                محصلان این پوهنځی پس از فراغت می‌توانند در بخش‌های مختلف دولتی و خصوصی، شرکت‌های تکنالوژی،
+                بانک‌ها، مراکز تحقیقاتی و یا به صورت مستقل فعالیت نمایند. برنامه‌های آموزشی این پوهنځی
+                مطابق با نیازهای بازار کار داخلی و بین‌المللی طراحی شده است.
+            </p>
+            <p>
+                همچنین پوهنځی کمپیوتر ساینس فرصت‌های کارآموزی، پروژه‌های عملی، سمینارها و ورکشاپ‌های
+                تخصصی را برای محصلان فراهم می‌سازد تا آنان بتوانند مهارت‌های عملی خود را تقویت نمایند.
+            </p>
+        </div>
+    </section>
+
+    <!-- بخش معلومات -->
+    <section id="info">
+        <h2 class="section-title">معلومات در باره پوهنځی</h2>
+        <p class="section-subtitle">ویژگی‌ها و مزایای تحصیل در پوهنځی کمپیوتر ساینس</p>
+        <div class="cards">
+            <div class="card">
+                <div class="icon">🎓</div>
+                <h3>کادر علمی مجرب</h3>
+                <p>استادان با تجربه و متخصص در زمینه‌های مختلف کمپیوتر ساینس</p>
+            </div>
+            <div class="card">
+                <div class="icon">🖥️</div>
+                <h3>لابراتوارهای مجهز</h3>
+                <p>لابراتوارهای مدرن با تجهیزات به‌روز برای تمرین عملی محصلان</p>
+            </div>
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>برنامه درسی به‌روز</h3>
+                <p>منهج درسی مطابق با آخرین دستاوردهای تکنالوژی جهانی</p>
+            </div>
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h3>فرصت‌های شغلی</h3>
+                <p>آماده‌سازی محصلان برای ورود به بازار کار داخلی و بین‌المللی</p>
+            </div>
+            <div class="card">
+                <div class="icon">🤝</div>
+                <h3>پروژه‌های عملی</h3>
+                <p>کار بر روی پروژه‌های واقعی برای کسب تجربه عملی</p>
+            </div>
+            <div class="card">
+                <div class="icon">🌐</div>
+                <h3>همکاری‌های بین‌المللی</h3>
+                <p>ارتباط با پوهنتون‌ها و مؤسسات بین‌المللی</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش گالری تصاویر -->
+    <section id="gallery">
+        <h2 class="section-title">تصاویر پوهنځی</h2>
+        <p class="section-subtitle">نگاهی به فضای آموزشی و فعالیت‌های پوهنځی</p>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="فضای پوهنتون">
+                <div class="caption">فضای پوهنتون</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="لابراتوار کمپیوتر">
+                <div class="caption">لابراتوار کمپیوتر</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="صنف درس">
+                <div class="caption">صنوف درسی</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="کار گروهی">
+                <div class="caption">کار گروهی محصلان</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="پروژه برنامه‌نویسی">
+                <div class="caption">پروژه‌های برنامه‌نویسی</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80" alt="سمینار">
+                <div class="caption">سمینارها و ورکشاپ‌ها</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش دیپارتمنت‌ها -->
+    <section id="departments">
+        <h2 class="section-title">دیپارتمنت‌های پوهنځی کمپیوتر ساینس</h2>
+        <p class="section-subtitle">شاخه‌های تخصصی پوهنځی</p>
+        <div class="dept-list">
+            <div class="dept">
+                <h3>💡 دیپارتمنت سافتویر انجینری</h3>
+                <p>آموزش طراحی، توسعه و نگهداری سیستم‌های نرم‌افزاری با استفاده از متدولوژی‌های مدرن.</p>
+            </div>
+            <div class="dept">
+                <h3>🔐 دیپارتمنت امنیت سایبری</h3>
+                <p>تربیت متخصصان در زمینه حفاظت از سیستم‌ها، شبکه‌ها و داده‌ها در برابر تهدیدات سایبری.</p>
+            </div>
+            <div class="dept">
+                <h3>🌐 دیپارتمنت شبکه‌های کمپیوتری</h3>
+                <p>آموزش طراحی، پیاده‌سازی و مدیریت شبکه‌های کمپیوتری و سیستم‌های ارتباطی.</p>
+            </div>
+            <div class="dept">
+                <h3>🤖 دیپارتمنت هوش مصنوعی</h3>
+                <p>مطالعه و تحقیق در زمینه یادگیری ماشین، پردازش زبان طبیعی و سیستم‌های هوشمند.</p>
+            </div>
+            <div class="dept">
+                <h3>📊 دیپارتمنت ساینس داده</h3>
+                <p>تحلیل داده‌های حجیم، استخراج معلومات و استفاده از داده‌ها برای تصمیم‌گیری بهتر.</p>
+            </div>
+            <div class="dept">
+                <h3>🎨 دیپارتمنت طراحی ویب و گرافیک</h3>
+                <p>آموزش طراحی رابط کاربری، تجربه کاربری و طراحی گرافیکی برای وب و اپلیکیشن‌ها.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <p>© ۲۰۲۵ پوهنځی کمپیوتر ساینس - تمامی حقوق محفوظ است</p>
+    </footer>
+
+    <!-- دکمه بازگشت به بالا -->
+    <button id="scrollTop" title="بازگشت به بالا">↑</button>
+
+    <script>
+        // دکمه بازگشت به بالا
+        const btn = document.getElementById('scrollTop');
+        window.onscroll = () => {
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        };
+        btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // اسکرول نرم برای لینک‌ها
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // نمایش بزرگ تصاویر (ساده)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position:fixed; inset:0; background:rgba(0,0,0,0.85);
+                    display:flex; align-items:center; justify-content:center;
+                    z-index:999; cursor:zoom-out; padding:20px;
+                `;
+                const bigImg = document.createElement('img');
+                bigImg.src = img.src;
+                bigImg.style.cssText = `
+                    max-width:90%; max-height:90%; border-radius:15px;
+                    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+                `;
+                overlay.appendChild(bigImg);
+                overlay.onclick = () => overlay.remove();
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
+</body>
+</html>
